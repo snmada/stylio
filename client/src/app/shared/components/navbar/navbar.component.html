@@ -1,0 +1,65 @@
+<header class="bg-white shadow-md">
+    <div class="grid grid-cols-3 items-center container mx-auto px-5 py-4">
+        <button 
+            class="md:hidden text-gray-700 justify-self-start cursor-pointer" 
+            (click)="toggleMenu()"
+        >
+            <mat-icon fontIcon="menu"></mat-icon>
+        </button>
+
+        <div class="text-center md:text-left">
+            <span 
+                routerLink="/" 
+                class="logo"
+            >
+                Stylio.
+            </span>
+        </div>
+    
+        <nav class="hidden md:flex justify-center gap-6">
+            <button 
+                routerLink="/" 
+                routerLinkActive="active"  
+                class="nav-button"
+            >
+                Home
+            </button>
+            <button 
+                routerLink="/shop" 
+                routerLinkActive="active"  
+                class="nav-button"
+            >
+                Shop
+        </button>
+        </nav>
+    
+        <div class="flex justify-end items-center gap-5">
+            <button class="icon-button">
+                <mat-icon fontIcon="favorite_border"></mat-icon>
+            </button>
+            <button class="icon-button">
+                <mat-icon fontIcon="shopping_cart"></mat-icon>
+            </button>
+            <button class="icon-button">
+                <mat-icon fontIcon="account_circle"></mat-icon>
+            </button>
+        </div>
+    </div>
+
+    <nav *ngIf="isMenuOpen" class="md:hidden p-4">
+        <button 
+            routerLink="/" 
+            routerLinkActive="active"  
+            class="menu-button"
+        >
+            Home
+        </button>
+        <button 
+            routerLink="/shop" 
+            routerLinkActive="active"  
+            class="menu-button"
+        >
+            Shop
+        </button>
+    </nav>
+</header>
