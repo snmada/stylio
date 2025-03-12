@@ -20,6 +20,7 @@
             <button 
                 routerLink="/" 
                 routerLinkActive="active"  
+                [routerLinkActiveOptions]="{ exact: true }" 
                 class="nav-button"
             >
                 Home
@@ -30,7 +31,7 @@
                 class="nav-button"
             >
                 Shop
-        </button>
+            </button> 
         </nav>
     
         <div class="flex justify-end items-center gap-5">
