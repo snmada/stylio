@@ -1,68 +1,19 @@
 <app-navbar></app-navbar>
 <div class="container mx-auto px-5 py-5">
     <p class="text-2xl md:text-4xl text-center p-10 mb-5 font-semibold">What are you looking for?</p>
-    <div class="category-wrapper">
+    <div *ngFor="let category of categories" class="category-wrapper">
         <div class="start-div">
-            <p class="category-name">TEXTILES.</p>
+            <p class="category-name">{{ category.name }}.</p>
             <div class="parallel-lines"></div>
         </div>
         <div class="menu">
-            <div class="menu-item">
+            <div *ngFor="let subcategory of category.subcategories" class="menu-item">
                 <img 
-                    src="parsa-farjam-Koup40gBe98-unsplash.jpg" 
-                    alt="Subcategory 1" 
+                    [src]="subcategory.image"
+                    alt="Image of the '{{ subcategory.name }}' subcategory"
                     class="menu-image"
                 >
-                <p class="subcategory-name">Curtains</p>
-            </div>
-            <div class="menu-item">
-                <img 
-                    src="designecologist-SQuY313aZyA-unsplash.jpg" 
-                    alt="Subcategory 2" 
-                    class="menu-image"
-                >
-                <p class="subcategory-name">Cushions</p>
-            </div>
-            <div class="menu-item">
-                <img 
-                    src="sina-saadatmand-gB9hryu1q40-unsplash.jpg" 
-                    alt="Subcategory 3" 
-                    class="menu-image"
-                >
-                <p class="subcategory-name">Rugs</p>
-            </div>
-        </div>
-        <div class="end-div"></div>
-    </div>
-    <div class="category-wrapper">
-        <div class="start-div">
-            <p class="category-name">DECORATIVE ACCESSORIES.</p>
-            <div class="parallel-lines"></div>
-        </div>
-        <div class="menu">
-            <div class="menu-item">
-                <img 
-                    src="galina-n-miziNqvJx5M-unsplash.jpg"
-                    alt="Subcategory 1" 
-                    class="menu-image"
-                >
-                <p class="subcategory-name">Artificial plants</p>
-            </div>
-            <div class="menu-item">
-                <img 
-                    src="yana-hurska-zeGT9j4ltRA-unsplash.jpg" 
-                    alt="Subcategory 2" 
-                    class="menu-image"
-                >
-                <p class="subcategory-name">Vases</p>
-            </div>
-            <div class="menu-item">
-                <img 
-                    src="jonny-caspari-KuudDjBHIlA-unsplash.jpg" 
-                    alt="Subcategory 3" 
-                    class="menu-image"
-                >
-                <p class="subcategory-name">Wall art</p>
+                <p class="subcategory-name">{{ subcategory.name }}</p>
             </div>
         </div>
         <div class="end-div"></div>
