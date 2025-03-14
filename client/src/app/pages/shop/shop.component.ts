@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { NavbarComponent } from '../../shared/components/navbar/navbar.component';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
+import { Category } from '../../shared/models/category.model';
+import { CategoryService } from '../../core/services/category.service';
 
 @Component({
   selector: 'app-shop',
@@ -13,4 +15,11 @@ import { MatIconModule } from '@angular/material/icon';
   templateUrl: './shop.component.html',
   styleUrl: './shop.component.scss'
 })
-export class ShopComponent { }
+export class ShopComponent {
+  private categoryService: CategoryService = inject(CategoryService);
+  categories: Category[] = [];
+
+  constructor() {
+    this.categories = this.categoryService.fetchCategories();
+  }
+}
