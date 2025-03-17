@@ -19,7 +19,14 @@ export class ShopComponent {
   private categoryService: CategoryService = inject(CategoryService);
   categories: Category[] = [];
 
-  constructor() {
-    this.categories = this.categoryService.fetchCategories();
+  ngOnInit() : void {
+    this.categoryService.getCategories().subscribe({
+      next: (response) => {
+        this.categories = response;
+      },
+      error: (error) => {
+        console.error('An error occured:', error);
+      }
+    });
   }
 }

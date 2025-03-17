@@ -1,6 +1,7 @@
 import "dotenv/config";
 import express from "express";
 import cors from "cors";
+import apiRoutes from "./routes/index.js";
 
 const CLIENT_URL = process.env.CLIENT_URL;
 const PORT = process.env.PORT || 4000;
@@ -13,6 +14,8 @@ app.use(cors({
 }));
 
 app.use(express.json());
+
+app.use("/api", apiRoutes);
 
 app.listen(PORT, (error) => {
     if(error) {
