@@ -1,0 +1,10 @@
+<button
+    [class]="classButton"
+    [disabled]="disabled"
+    (click)="onClick()"
+>
+    <ng-container *ngIf="icon">
+        <mat-icon>{{ icon }}</mat-icon> 
+    </ng-container>
+    <ng-content></ng-content>
+</button>
