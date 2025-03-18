@@ -1,8 +1,8 @@
 import { findAllProductsBySubcategoryId } from "../repositories/productRepository.js";
 
-export const fetchProductsBySubcategoryId = async (subcategoryId, pageIndex, pageSize) => {
+export const fetchProductsBySubcategoryId = async (subcategoryId, pageIndex, pageSize, sortParam) => {
     try {
-        const { products, totalCount } = await findAllProductsBySubcategoryId(subcategoryId, pageIndex, pageSize);
+        const { products, totalCount } = await findAllProductsBySubcategoryId(subcategoryId, pageIndex, pageSize, sortParam);
         
         if (!products.length) {
             throw new Error("No products found");

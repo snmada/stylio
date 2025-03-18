@@ -11,8 +11,18 @@ export class ProductService {
   private http = inject(HttpClient);
   private apiUrl = environment.apiUrl;
 
-  getProductsBySubcategoryId(subcategoryId: string, pageIndex: number, pageSize: number) : Observable<{ products: Product[], totalCount: number }> {
-    return this.http.get<{ products: Product[], totalCount: number }>
-      (`${this.apiUrl}/products/subcategory/${subcategoryId}?pageIndex=${pageIndex}&pageSize=${pageSize}`);
+  getProductsBySubcategoryId(
+    subcategoryId: string,
+    pageIndex: number, 
+    pageSize: number, 
+    sortParam: string = ''
+  ) : Observable<{ products: Product[], totalCount: number }> {
+    let url = `${this.apiUrl}/products/subcategory/${subcategoryId}?pageIndex=${pageIndex}&pageSize=${pageSize}`;
+
+    if (sortParam) {
+      url += `&sortParam=${sortParam}`;
+    }
+
+    return this.http.get<{ products: Product[], totalCount: number }>(url);
   }
 }

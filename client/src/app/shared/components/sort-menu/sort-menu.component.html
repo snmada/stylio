@@ -1,0 +1,22 @@
+<div class="sort-container">
+    <app-button 
+        (click)="toggleMenu()"
+        [icon]="isMenuOpen ? 'keyboard_arrow_up' : 'keyboard_arrow_down'"
+        iconPosition="right"
+    >
+        Sort by
+    </app-button>
+    <div class="menu" *ngIf="isMenuOpen">
+        <ul>
+            <li 
+                *ngFor="let option of sortOptions"
+                (click)="onSortOptionSelected(option)"
+            >
+                <span class="label">{{ option.label }}</span>
+                <span class="icon">
+                    <mat-icon *ngIf="selectedSort === option.label">done</mat-icon>
+                </span>
+            </li>
+        </ul>
+    </div>
+</div>

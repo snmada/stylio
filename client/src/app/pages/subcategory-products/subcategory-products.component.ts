@@ -11,6 +11,7 @@ import { ProductCardComponent } from '../../shared/components/product-card/produ
 import { Product } from '../../shared/models/product.model';
 import { ProductService } from '../../core/services/product.services';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { SortMenuComponent } from '../../shared/components/sort-menu/sort-menu.component';
 
 @Component({
   selector: 'app-subcategory-products',
@@ -21,7 +22,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     NavbarComponent,
     SubcategoryPreviewComponent,
     ProductCardComponent,
-    MatPaginatorModule
+    MatPaginatorModule,
+    SortMenuComponent
   ],
   templateUrl: './subcategory-products.component.html',
   styleUrl: './subcategory-products.component.scss'
@@ -40,6 +42,7 @@ export class SubcategoryProductsComponent {
   pageIndex: number = 0;
   pageSize: number = 20;
   totalProducts: number = 0;
+  selectedSort: string = ''; 
 
   ngOnInit() : void {
     this.categoryService.getCategories().subscribe({
@@ -80,7 +83,9 @@ export class SubcategoryProductsComponent {
   }
 
   loadProducts() {
-    this.productService.getProductsBySubcategoryId(this.subcategory.id, this.pageIndex, this.pageSize).subscribe({
+    let sortParam = this.selectedSort;
+
+    this.productService.getProductsBySubcategoryId(this.subcategory.id, this.pageIndex, this.pageSize, sortParam).subscribe({
       next: (response) => {
         this.products = response.products;
         this.totalProducts = response.totalCount;
@@ -94,6 +99,11 @@ export class SubcategoryProductsComponent {
   onPageChange(event: any) {
     this.pageIndex = event.pageIndex;
     this.pageSize = event.pageSize;
+    this.loadProducts();
+  }
+
+  onSortChange(sortOption: any) {
+    this.selectedSort = sortOption;
     this.loadProducts();
   }
 }
