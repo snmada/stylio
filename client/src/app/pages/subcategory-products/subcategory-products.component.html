@@ -1,0 +1,19 @@
+<app-navbar></app-navbar>
+<div class="container mx-auto px-5 py-5 z-1">
+    <div class="breadcrumb">
+        <app-button 
+            routerLink="/shop"
+            icon="arrow_back"
+        ></app-button>
+        <span class="text-lg ml-10 uppercase">{{ categoryName }}.</span>
+        <span class="vertical-line"></span>
+        <app-subcategory-preview
+            [imageSrc]="subcategory.image"
+            [name]="subcategory.name"
+            [imageSize]="60"
+            [textSize]="18"
+        ></app-subcategory-preview>
+    </div>
+    <p class="text-3xl mb-2">{{ subcategory.name }}</p>
+    <p class="text-[18px] mb-10">{{ subcategory.description }}</p>
+</div>

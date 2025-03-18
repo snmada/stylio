@@ -1,0 +1,14 @@
+<div [ngClass]="subcategoryPreviewClasses">
+    <img
+        class="subcategory-image"
+        [src]="imageSrc" 
+        [alt]="'Image of the ' + name + ' subcategory'"
+        [ngStyle]="{ width: imageSize + 'px', height: imageSize + 'px' }"
+    >
+    <p 
+        class="subcategory-name" 
+        [ngStyle]="{ fontSize: textSize + 'px' }"
+    >
+        {{ name }}
+    </p>
+</div>
