@@ -1,0 +1,12 @@
+.breadcrumb {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 30px;
+    
+    .vertical-line {
+        border-left: 2px solid #ddd;
+        height: 100px;
+        margin: 0 20px 0 40px;
+    }
+}

@@ -18,8 +18,11 @@ export class ButtonComponent {
   @Input() iconPosition: 'left' | 'right' = 'left';
   @Output() clicked: EventEmitter<void> = new EventEmitter<void>();
 
-  get classButton() {
-    return `btn-${this.color} ${this.iconPosition === 'right' ? 'icon-right' : ''}`;
+  get buttonClasses() {
+    return {
+      [`btn-${this.color}`]: true,
+      'icon-right': this.iconPosition === 'right'
+    };
   }
 
   onClick(): void {

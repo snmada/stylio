@@ -23,7 +23,6 @@ button {
         flex-direction: row-reverse;
     }
 
-    &.disabled,
     &:disabled {
         cursor: not-allowed;
         opacity: 0.2;

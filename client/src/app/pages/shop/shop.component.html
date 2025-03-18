@@ -6,15 +6,18 @@
             <p class="category-name">{{ category.name }}.</p>
             <div class="parallel-lines"></div>
         </div>
-        <div class="menu">
-            <div *ngFor="let subcategory of category.subcategories" class="menu-item">
-                <img 
-                    [src]="subcategory.image"
-                    alt="Image of the '{{ subcategory.name }}' subcategory"
-                    class="menu-image"
-                >
-                <p class="subcategory-name">{{ subcategory.name }}</p>
-            </div>
+        <div class="subcategory-div">
+            <ng-container *ngFor="let subcategory of category.subcategories">
+                <app-subcategory-preview
+                    [imageSrc]="subcategory.image"
+                    [name]="subcategory.name"
+                    [imageSize]="130"
+                    [textSize]="18"
+                    [cursorPointer]="true"
+                    [showBorderOnHover]="true"
+                    [routerLink]="['/shop', category.name.toLowerCase(), subcategory.name.toLowerCase()]"
+                ></app-subcategory-preview>
+            </ng-container>
         </div>
         <div class="end-div"></div>
     </div>

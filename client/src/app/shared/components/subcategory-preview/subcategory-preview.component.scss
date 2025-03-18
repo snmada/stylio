@@ -1,0 +1,30 @@
+.subcategory-preview {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    min-width: 130px;
+
+    .subcategory-image {    
+        object-fit: cover;
+        border-radius: 50%;
+    }
+
+    .subcategory-name {
+        margin-top: 10px;
+        color: #191919;
+        font-weight: bold;
+        border-bottom: 1px solid transparent;
+    }
+
+    &.cursor-pointer {
+        cursor: pointer;
+    }
+
+    &.border-on-hover:hover 
+    .subcategory-name {
+        border-bottom: 1px solid #191919;
+    }
+}
