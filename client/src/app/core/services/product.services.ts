@@ -11,7 +11,8 @@ export class ProductService {
   private http = inject(HttpClient);
   private apiUrl = environment.apiUrl;
 
-  getProductsBySubcategoryId(subcategoryId: string) : Observable<Product[]> {
-    return this.http.get<Product[]>(`${this.apiUrl}/products/subcategory/${subcategoryId}`);
+  getProductsBySubcategoryId(subcategoryId: string, pageIndex: number, pageSize: number) : Observable<{ products: Product[], totalCount: number }> {
+    return this.http.get<{ products: Product[], totalCount: number }>
+      (`${this.apiUrl}/products/subcategory/${subcategoryId}?pageIndex=${pageIndex}&pageSize=${pageSize}`);
   }
 }

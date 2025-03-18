@@ -10,6 +10,7 @@ import { SubcategoryPreviewComponent } from '../../shared/components/subcategory
 import { ProductCardComponent } from '../../shared/components/product-card/product-card.component';
 import { Product } from '../../shared/models/product.model';
 import { ProductService } from '../../core/services/product.services';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-subcategory-products',
@@ -19,7 +20,8 @@ import { ProductService } from '../../core/services/product.services';
     ButtonComponent,
     NavbarComponent,
     SubcategoryPreviewComponent,
-    ProductCardComponent
+    ProductCardComponent,
+    MatPaginatorModule
   ],
   templateUrl: './subcategory-products.component.html',
   styleUrl: './subcategory-products.component.scss'
@@ -35,6 +37,9 @@ export class SubcategoryProductsComponent {
   subcategory: Subcategory = { id: '', name: '', description: '', image: ''};
   categoryName: string = '';
   subcategoryName: string = '';
+  pageIndex: number = 0;
+  pageSize: number = 20;
+  totalProducts: number = 0;
 
   ngOnInit() : void {
     this.categoryService.getCategories().subscribe({
@@ -65,19 +70,30 @@ export class SubcategoryProductsComponent {
   
           this.subcategory = selectedSubcategory;
 
-          this.productService.getProductsBySubcategoryId(this.subcategory.id).subscribe({
-            next: (response) => {
-              this.products = response;
-            },
-            error: (error) => {
-              console.error('An error occured while fetching products:', error);
-            }
-          });
+          this.loadProducts();
         });
       },
       error: (error) => {
         console.error('An error occured:', error);
       }
     });
+  }
+
+  loadProducts() {
+    this.productService.getProductsBySubcategoryId(this.subcategory.id, this.pageIndex, this.pageSize).subscribe({
+      next: (response) => {
+        this.products = response.products;
+        this.totalProducts = response.totalCount;
+      },
+      error: (error) => {
+        console.error('An error occured while fetching products:', error);
+      }
+    });
+  }
+
+  onPageChange(event: any) {
+    this.pageIndex = event.pageIndex;
+    this.pageSize = event.pageSize;
+    this.loadProducts();
   }
 }

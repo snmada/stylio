@@ -28,4 +28,12 @@
             </app-product-card>
         </ng-container>
     </div>
+    <mat-paginator
+        class="mat-paginator"
+        [length]="totalProducts"
+        [pageSize]="pageSize"
+        [pageSizeOptions]="[4, 8, 20, 40, 80]"
+        aria-label="Select page"
+        (page)="onPageChange($event)">
+    </mat-paginator>
 </div>
