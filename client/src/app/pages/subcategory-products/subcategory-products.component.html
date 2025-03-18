@@ -16,4 +16,16 @@
     </div>
     <p class="text-3xl mb-2">{{ subcategory.name }}</p>
     <p class="text-[18px] mb-10">{{ subcategory.description }}</p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 my-10">
+        <ng-container *ngFor="let product of products">
+            <app-product-card
+                [name]="product.name"
+                [description]="product.description"
+                [price]="product.price"
+                [image]="'yana-hurska-zeGT9j4ltRA-unsplash.jpg'"
+                [id]="product.id"
+            >
+            </app-product-card>
+        </ng-container>
+    </div>
 </div>

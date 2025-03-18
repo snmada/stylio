@@ -1,0 +1,18 @@
+<div class="product-card-wrapper">
+    <div class="favorite-section">
+        <span>Do you like it?</span>
+        <mat-icon>favorite_outline</mat-icon>
+    </div> 
+    <div class="product-card">
+        <img 
+            [src]="image" 
+            [alt]="'Image of the ' + name + ' product'"
+        />
+        <span class="font-bold mt-3">{{ name }}</span>
+        <span class="text-gray-800 mb-2 h-[50px]">{{ description }}</span>
+        <span class="text-[25px] font-extrabold">{{ price | currency: 'USD' : 'symbol' : '1.2-2' }}</span>
+        <div class="flex flex-row gap-3 mt-3">
+            <app-button icon="add_shopping_cart"></app-button>
+        </div>
+    </div>
+</div>

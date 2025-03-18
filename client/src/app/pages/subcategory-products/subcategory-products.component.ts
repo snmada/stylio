@@ -3,27 +3,35 @@ import { NavbarComponent } from '../../shared/components/navbar/navbar.component
 import { Category } from '../../shared/models/category.model';
 import { CategoryService } from '../../core/services/category.service';
 import { RouterModule, Router, ActivatedRoute } from '@angular/router';
+import { CommonModule } from '@angular/common';
 import { ButtonComponent } from '../../shared/components/button/button.component';
 import { Subcategory } from '../../shared/models/subcategory.model';
 import { SubcategoryPreviewComponent } from '../../shared/components/subcategory-preview/subcategory-preview.component';
+import { ProductCardComponent } from '../../shared/components/product-card/product-card.component';
+import { Product } from '../../shared/models/product.model';
+import { ProductService } from '../../core/services/product.services';
 
 @Component({
   selector: 'app-subcategory-products',
   imports: [
+    CommonModule,
     RouterModule,
     ButtonComponent,
     NavbarComponent,
-    SubcategoryPreviewComponent
+    SubcategoryPreviewComponent,
+    ProductCardComponent
   ],
   templateUrl: './subcategory-products.component.html',
   styleUrl: './subcategory-products.component.scss'
 })
 export class SubcategoryProductsComponent {
   private categoryService: CategoryService = inject(CategoryService);
+  private productService: ProductService = inject(ProductService);
   private router: Router = inject(Router);
   private route: ActivatedRoute = inject(ActivatedRoute);
 
   categories: Category[] = [];
+  products: Product[] = [];
   subcategory: Subcategory = { id: '', name: '', description: '', image: ''};
   categoryName: string = '';
   subcategoryName: string = '';
@@ -56,6 +64,15 @@ export class SubcategoryProductsComponent {
           }
   
           this.subcategory = selectedSubcategory;
+
+          this.productService.getProductsBySubcategoryId(this.subcategory.id).subscribe({
+            next: (response) => {
+              this.products = response;
+            },
+            error: (error) => {
+              console.error('An error occured while fetching products:', error);
+            }
+          });
         });
       },
       error: (error) => {
