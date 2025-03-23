@@ -98,6 +98,60 @@ async function main() {
     }
   });
 
+  const blue = await prisma.color.upsert({
+    where: { name: "Blue" },
+    update: {},
+    create: {
+      name: "Blue",
+      hex_code: "#0A5EB0"
+    }
+  });
+
+  const red = await prisma.color.upsert({
+    where: { name: "Red" },
+    update: {},
+    create: {
+      name: "Red",
+      hex_code: "#D84040"
+    }
+  });
+  
+  const green = await prisma.color.upsert({
+    where: { name: "Green" },
+    update: {},
+    create: {
+      name: "Green",
+      hex_code: "#5CB338"
+    }
+  });
+
+  const white = await prisma.color.upsert({
+    where: { name: "White" },
+    update: {},
+    create: {
+      name: "White",
+      hex_code: "#FFFFFF"
+    }
+  });
+
+  const black = await prisma.color.upsert({
+    where: { name: "Black" },
+    update: {},
+    create: {
+      name: "Black",
+      hex_code: "#191919"
+    }
+  });
+
+  const yellow = await prisma.color.upsert({
+    where: { name: "Yellow" },
+    update: {},
+    create: {
+      name: "Yellow",
+      hex_code: "#ECE852"
+    }
+  });
+
   const defaultProductImage = "default-product-image.jpg";
 
   const products = [
@@ -106,96 +160,108 @@ async function main() {
       description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       price: 50.99,
       image: defaultProductImage,
+      stock: 150,
       subcategory_id: curtains.id,
-      stock: 150
+      color_id: blue.id
     },
     {
       name: "LOREM-B",
       description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       price: 87.99,
       image: defaultProductImage,
+      stock: 100,
       subcategory_id: curtains.id,
-      stock: 100
+      color_id: yellow.id
     },
     {
       name: "LOREM-C",
       description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       price: 30,
       image: defaultProductImage,
+      stock: 290,
       subcategory_id: cushions.id,
-      stock: 290
+      color_id: yellow.id
     },
     {
       name: "LOREM-D",
       description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       price: 100.97,
       image: defaultProductImage,
+      stock: 200,
       subcategory_id: cushions.id,
-      stock: 200
+      color_id: black.id
     },
     {
       name: "LOREM-E",
       description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       price: 150.99,
       image: defaultProductImage,
+      stock: 30,
       subcategory_id: rugs.id,
-      stock: 30
+      color_id: white.id
     },
     {
       name: "LOREM-F",
       description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       price: 12.99,
       image: defaultProductImage,
+      stock: 50,
       subcategory_id: rugs.id,
-      stock: 50
+      color_id: blue.id
     },
     {
       name: "LOREM-G",
       description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       price: 40.99,
       image: defaultProductImage,
+      stock: 150,
       subcategory_id: artificialPlants.id,
-      stock: 150
+      color_id: green.id
     },
     {
       name: "LOREM-H",
       description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       price: 541.99,
       image: defaultProductImage,
+      stock: 170,
       subcategory_id: artificialPlants.id,
-      stock: 170
+      color_id: red.id
     },
     {
       name: "LOREM-I",
       description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       price: 89.99,
       image: defaultProductImage,
+      stock: 75,
       subcategory_id: vases.id,
-      stock: 75
+      color_id: red.id
     },
     {
       name: "LOREM-J",
       description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       price: 120.99,
       image: defaultProductImage,
+      stock: 90,
       subcategory_id: vases.id,
-      stock: 90
+      color_id: red.id
     },
     {
       name: "LOREM-K",
       description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       price: 100.99,
       image: defaultProductImage,
+      stock: 20,
       subcategory_id: wallArt.id,
-      stock: 20
+      color_id: yellow.id
     },
     {
       name: "LOREM-L",
       description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       price: 120,
       image: defaultProductImage,
+      stock: 290,
       subcategory_id: wallArt.id,
-      stock: 290
+      color_id: black.id
     },
   ];
 
@@ -208,8 +274,13 @@ async function main() {
         description: product.description,
         price: product.price,
         image: product.image,
-        subcategory_id: product.subcategory_id,
-        stock: product.stock
+        stock: product.stock,
+        subcategory: {
+          connect: { id: product.subcategory_id }
+        },
+        color: {
+          connect: { id: product.color_id }
+        },
       },
     });
   }
