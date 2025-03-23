@@ -29,13 +29,22 @@ model Subcategory {
   products                      Product[]
 }
 
+model Color {
+  id                            String                  @id @default(uuid())
+  name                          String                  @unique
+  hex_code                      String                  
+  products                      Product[]
+}
+
 model Product {
   id                            String                  @id @default(uuid())
   name                          String                  @unique
   description                   String?
   price                         Float
   image                         String
+  stock                         Int
   subcategory_id                String
   subcategory                   Subcategory             @relation(fields: [subcategory_id], references: [id])
-  stock                         Int
+  color_id                      String
+  color                         Color                   @relation(fields: [color_id], references: [id])
 }
