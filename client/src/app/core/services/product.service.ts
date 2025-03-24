@@ -15,14 +15,24 @@ export class ProductService {
     subcategoryId: string,
     pageIndex: number, 
     pageSize: number, 
-    sortParam: string = ''
+    sortParam: string = '',
+    colorFilter: string[] = [],
+    priceRange: { minPrice: number, maxPrice: number } = { minPrice: 0, maxPrice: 0 }
   ) : Observable<{ products: Product[], totalCount: number }> {
     let url = `${this.apiUrl}/products/subcategory/${subcategoryId}?pageIndex=${pageIndex}&pageSize=${pageSize}`;
 
     if (sortParam) {
       url += `&sortParam=${sortParam}`;
     }
-
+  
+    if (colorFilter.length > 0) {
+      url += `&colors=${colorFilter.join(',')}`;
+    }
+  
+    if (priceRange.minPrice || priceRange.maxPrice) {
+      url += `&minPrice=${priceRange.minPrice}&maxPrice=${priceRange.maxPrice}`;
+    }
+  
     return this.http.get<{ products: Product[], totalCount: number }>(url);
   }
 }

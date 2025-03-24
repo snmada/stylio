@@ -4,6 +4,11 @@ export interface Product {
     description: string;
     price: number;
     image: string;
-    subcategory_id: string;
     stock: number;
+    subcategory_id: string;
+    color: {           
+        id: string;
+        name: string;
+        hex_code: string;
+    };
 }
