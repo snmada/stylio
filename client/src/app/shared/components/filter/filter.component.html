@@ -1,0 +1,84 @@
+<div class="mat-drawer-header">
+    <p class="mat-drawer-title">Filters</p>
+    <mat-icon class="ml-auto cursor-pointer" (click)="closeDrawer()">close</mat-icon>
+</div>
+<div class="content">
+    <mat-accordion >
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>Color</mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="color-section" *ngFor="let color of filterOptions.colors">
+                <div class="color-div">
+                    <div 
+                        class="color-circle" 
+                        (click)="colorCounts[color.name] > 0 ? onColorChange(color.id) : 0"
+                        [ngStyle]="{
+                            'border': selectedFilters.color.includes(color.id) && colorCounts[color.name] !== undefined ? '2px solid #191919' : 'none',
+                            'cursor': colorCounts[color.name] === undefined ? 'not-allowed' : 'pointer', 
+                            'opacity': colorCounts[color.name] === undefined ? '0.5' : '1'  
+                        }"
+                    >
+                        <div 
+                            class="color-circle-inner"  
+                            [ngStyle]="{
+                                'background-color': color.hex_code,
+                                'border': color.hex_code === '#FFFFFF' ? '1px solid #ddd' : 'none'
+                            }"
+                        ></div>
+                    </div>
+                    <span>{{ color.name }}</span>
+                    <span>({{ colorCounts[color.name] || 0 }})</span>
+                </div>
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+    <mat-accordion>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>Price</mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="flex mt-5">
+                <mat-slider
+                    [min]="filterOptions.minPrice"
+                    [max]="filterOptions.maxPrice"
+                    [step]="1"
+                    showTickMarks
+                    discrete
+                    thumbLabel
+                >
+                    <input matSliderStartThumb [value]="selectedFilters.minPrice" (input)="onStartThumbInput($event)">
+                    <input matSliderEndThumb [value]="selectedFilters.maxPrice" (input)="onEndThumbInput($event)">
+                </mat-slider>
+            </div>
+            <div class="flex justify-between text-gray-500 mb-8">
+                <span>${{ filterOptions.minPrice }}</span>
+                <span>${{ filterOptions.maxPrice }}</span>
+            </div>
+            <div 
+                *ngIf="selectedFilters.minPrice !== filterOptions.minPrice || selectedFilters.maxPrice !== filterOptions.maxPrice" 
+                class="flex justify-around mt-4 mb-5"
+            >
+                <div class="text-center">
+                    <span>Chosen Min</span>
+                    <div class="text-lg font-semibold">${{ selectedFilters.minPrice }}</div>
+                </div>
+                <div class="text-center">
+                    <span>Chosen Max</span>
+                    <div class="text-lg font-semibold">${{ selectedFilters.maxPrice }}</div>
+                </div>
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>
+<div class="mat-drawer-footer">
+    <app-button (click)="resetFilters()">Reset</app-button>
+    <app-button 
+        color="secondary"
+        (click)="
+            applyFilters(); 
+            closeDrawer()"
+    >
+        {{ totalProducts === 0 ? 'No results' : (totalProducts === 1 ? 'Show 1 result' : 'Show ' + totalProducts + ' results') }}
+    </app-button>
+</div> 

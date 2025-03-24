@@ -2,7 +2,7 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-export const findAllProductsBySubcategoryId = async (subcategoryId, pageIndex, pageSize, sortParam) => {
+export const findAllProductsBySubcategoryId = async (subcategoryId, pageIndex, pageSize, sortParam, colors, priceRange) => {
     let orderBy = {};
 
     switch (sortParam) {
@@ -22,27 +22,49 @@ export const findAllProductsBySubcategoryId = async (subcategoryId, pageIndex, p
             orderBy = {};
             break;
     }
-    
-    const products = await prisma.product.findMany({
-        where: {
-            subcategory_id: subcategoryId,
-            stock: {
-                gt: 0
-            }
+
+    const where = {
+        subcategory_id: subcategoryId,
+        stock: {
+            gt: 0
         },
+
+        ...(colors.length > 0 && {
+            color: {
+                id: { in: colors }
+            }
+        }),
+
+        ...(priceRange && {
+            price: {
+                gte: priceRange.minPrice,
+                lte: priceRange.maxPrice
+            }
+        })
+    };
+
+    const products = await prisma.product.findMany({
+        where,
         skip: pageIndex * pageSize,
         take: pageSize,
-        orderBy
-    });
-
-    const totalCount = await prisma.product.count({
-        where: {
-            subcategory_id: subcategoryId,
-            stock: {
-                gt: 0
+        orderBy,
+        select: {
+            id: true,
+            name: true,
+            description: true,
+            price: true,
+            image: true,
+            color: {
+                select: {
+                    id: true,
+                    name: true,
+                    hex_code: true
+                }
             }
         }
     });
+
+    const totalCount = await prisma.product.count({ where });
 
     return { products, totalCount };
 };
