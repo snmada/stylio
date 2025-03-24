@@ -1,0 +1,33 @@
+<app-navbar></app-navbar>
+<div class="container mx-auto px-5 py-5 z-1">
+    <div class="text-[30px] my-5 text-center">My Shopping Cart</div>
+    <app-button routerLink="/shop">CONTINUE SHOPPING</app-button>
+    <div class="flex flex-col xl:flex-row gap-10 mt-10">
+        <div class="flex-[2]">
+            <app-cart-item 
+                *ngFor="let item of cartItems"
+                [item]="item" 
+                (quantityChanged)="updateQuantity($event)" 
+                (remove)="removeItem($event)"
+            >
+            </app-cart-item>
+        </div>
+        <div class="flex-[1]">
+            <div class="p-5 sticky top-25 border">
+                <div class="checkout-item">
+                    <p class="name">Subtotal:</p>
+                    <p class="value">{{ subtotalPrice | currency: 'USD' : 'symbol' : '1.2-2' }}</p>
+                </div>
+                <div class="checkout-item">
+                    <p class="name">Tax:</p>
+                    <p class="value">{{ tax | currency: 'USD' : 'symbol' : '1.2-2' }}</p>
+                </div>
+                <div class="checkout-total">
+                    <p>Total:</p>
+                    <p>{{ totalPrice | currency: 'USD' : 'symbol' : '1.2-2' }}</p>
+                </div>
+                <app-button>Checkout</app-button>
+            </div>
+        </div>
+    </div>
+</div>
