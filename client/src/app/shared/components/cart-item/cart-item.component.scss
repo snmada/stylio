@@ -1,0 +1,25 @@
+.cart-item {
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    border-top: 1px solid #191919;
+
+    .cart-item-details {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        align-items: center;
+        gap: 30px;
+    }
+
+    .remove-button {
+        color: red;
+        width: max-content;
+        border-bottom: 1px solid transparent;
+        cursor: pointer;
+
+        &:hover {
+            border-bottom: 1px solid red;
+        }
+    }
+}

@@ -1,0 +1,22 @@
+<div class="cart-item">
+    <div class="cart-item-details">
+        <img 
+            [src]="item.image" 
+            [alt]="'Image of the ' + item.name + ' product'" 
+            class="w-40 h-40 object-cover "
+        >
+        <div class="flex flex-col h-full">
+            <span class="text-[20px] font-semibold">{{ item.name }}</span>
+            <span class="mb-2">{{ item.price | currency: 'USD' : 'symbol' : '1.2-2' }}/item</span>
+            <span class="remove-button">Remove</span>
+        </div>
+        <span class="ml-auto text-[20px] font-semibold">{{ item.price * item.quantity | currency: 'USD' : 'symbol' : '1.2-2' }}</span>
+    </div>
+    <div class="w-40 flex justify-center">
+        <div class="flex items-center mt-5 gap-2">
+            <app-button (click)="decreaseQuantity()">-</app-button>
+            <span class="w-[30px] text-center">{{ item.quantity }}</span>
+            <app-button (click)="increaseQuantity()">+</app-button>
+        </div>
+    </div>
+</div>
