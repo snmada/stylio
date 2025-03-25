@@ -14,20 +14,20 @@ import { CartItem } from '../../models/cart-item.model';
 })
 export class CartItemComponent {
   @Input() item!: CartItem;
-  @Output() quantityChanged = new EventEmitter<{ id: number, change: number }>();
-  @Output() remove = new EventEmitter<number>();
+  @Output() quantityChanged = new EventEmitter<number>();
+  @Output() remove = new EventEmitter<void>();
 
   increaseQuantity() : void {
-    this.quantityChanged.emit({ id: this.item.id, change: 1 });
+    this.quantityChanged.emit(this.item.quantity + 1);
   }
 
   decreaseQuantity() : void {
     if (this.item.quantity > 1) {
-      this.quantityChanged.emit({ id: this.item.id, change: -1 });
+      this.quantityChanged.emit(this.item.quantity - 1);
     }
   }
 
   removeItem() : void {
-    this.remove.emit(this.item.id);
+    this.remove.emit();
   }
 }

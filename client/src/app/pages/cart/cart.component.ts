@@ -1,14 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { NavbarComponent } from '../../shared/components/navbar/navbar.component';
 import { ButtonComponent } from '../../shared/components/button/button.component';
 import { CartItemComponent } from '../../shared/components/cart-item/cart-item.component';
 import { CartItem } from '../../shared/models/cart-item.model';
+import { CartService } from '../../core/services/cart.service';
 
 @Component({
   selector: 'app-cart',
   imports: [
     CommonModule,
+    RouterModule,
     NavbarComponent,
     ButtonComponent,
     CartItemComponent
@@ -17,28 +20,33 @@ import { CartItem } from '../../shared/models/cart-item.model';
   styleUrl: './cart.component.scss'
 })
 export class CartComponent {
-  cartItems: CartItem[] = [
-    { id: 1, name: 'Product 1', price: 25.50, quantity: 1, image: 'yana-hurska-zeGT9j4ltRA-unsplash.jpg' },
-    { id: 2, name: 'Product 2', price: 40.99, quantity: 2, image: 'yana-hurska-zeGT9j4ltRA-unsplash.jpg' }
-  ];
-  tax: number = 300;
+  private cartService: CartService = inject(CartService);
 
-  get subtotalPrice(): number {
-    return this.cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
+  cartItems: CartItem[] = [];
+  subtotalPrice = 0;
+  tax = 0;
+  totalPrice = 0;
+
+  ngOnInit() {
+    this.cartService.cart$.subscribe((items) => {
+      this.cartItems = items;
+      this.updateCartSummary();
+    });
   }
 
-  get totalPrice(): number {
-    return this.subtotalPrice + this.tax;
-  }
-
-  updateQuantity(event: { id: number, change: number }) : void {
-    const item = this.cartItems.find(i => i.id === event.id);
-    if (item) {
-      item.quantity += event.change;
+  updateQuantity(item: CartItem, quantity: number) : void {
+    if (quantity > 0) {
+      this.cartService.updateQuantity(item.id, quantity);
     }
   }
 
-  removeItem(itemId: number) : void {
-    this.cartItems = this.cartItems.filter(item => item.id !== itemId);
+  removeItem(id: string) : void {
+    this.cartService.removeItem(id);
+  }
+
+  updateCartSummary() : void {
+    this.subtotalPrice = this.cartService.getSubtotal();
+    this.tax = this.cartService.getTax();
+    this.totalPrice = this.cartService.getTotal();
   }
 }

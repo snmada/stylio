@@ -8,7 +8,7 @@
         <div class="flex flex-col h-full">
             <span class="text-[20px] font-semibold">{{ item.name }}</span>
             <span class="mb-2">{{ item.price | currency: 'USD' : 'symbol' : '1.2-2' }}/item</span>
-            <span class="remove-button">Remove</span>
+            <span class="remove-button" (click)="removeItem()">Remove</span>
         </div>
         <span class="ml-auto text-[20px] font-semibold">{{ item.price * item.quantity | currency: 'USD' : 'symbol' : '1.2-2' }}</span>
     </div>
