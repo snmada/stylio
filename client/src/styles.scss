@@ -31,4 +31,9 @@ body {
         with-tick-marks-active-container-color: rgb(163, 163, 163),
         label-label-text-font: "'Outfit', sans-serif"
     ));
+
+    @include mat.badge-overrides((
+        background-color: #191919,
+        text-color: #FFFFFF
+    ));
 }

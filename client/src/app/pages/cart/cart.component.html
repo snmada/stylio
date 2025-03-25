@@ -7,8 +7,8 @@
             <app-cart-item 
                 *ngFor="let item of cartItems"
                 [item]="item" 
-                (quantityChanged)="updateQuantity($event)" 
-                (remove)="removeItem($event)"
+                (quantityChanged)="updateQuantity(item, $event)" 
+                (remove)="removeItem(item.id)"
             >
             </app-cart-item>
         </div>

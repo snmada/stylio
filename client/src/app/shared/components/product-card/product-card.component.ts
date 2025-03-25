@@ -1,7 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { ButtonComponent } from '../button/button.component';
+import { CartItem } from '../../models/cart-item.model';
+import { CartService } from '../../../core/services/cart.service';
 
 @Component({
   selector: 'app-product-card',
@@ -20,4 +22,17 @@ export class ProductCardComponent {
   @Input() description: string = '';
   @Input() price: number = 0;
   @Input() image: string = '';
+
+  private cartService: CartService = inject(CartService);
+
+  addToCart() {
+    const item: CartItem = {
+      id: this.id,
+      name: this.name,
+      price: this.price,
+      quantity: 1,
+      image: this.image,
+    };
+    this.cartService.addToCart(item);
+  }
 }
