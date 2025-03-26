@@ -37,7 +37,14 @@
             <app-sort-menu (sortChanged)="onSortChange($event)"></app-sort-menu>
             <p class="ml-auto">{{ totalProducts }} items</p>
         </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 my-10">
+        <div *ngIf="isLoading" class="flex flex-col gap-5 justify-center items-center h-[200px] text-xl">
+            <mat-spinner [diameter]="50"></mat-spinner>
+            <span>Loading products...Almost ready!</span>
+        </div>
+        <div *ngIf="!isLoading && totalProducts === 0" class="flex justify-center items-center h-[200px] text-xl mt-5">
+            No products found.
+        </div>
+        <div *ngIf="!isLoading && totalProducts > 0" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 my-10">
             <ng-container *ngFor="let product of products">
                 <app-product-card
                     [name]="product.name"
@@ -55,7 +62,9 @@
             [pageSize]="pageSize"
             [pageSizeOptions]="[4, 8, 20, 40, 80]"
             aria-label="Select page"
-            (page)="onPageChange($event)">
+            (page)="onPageChange($event)"
+            *ngIf="!isLoading && totalProducts > 0"
+        >
         </mat-paginator>
     </div>
 </mat-drawer-container>

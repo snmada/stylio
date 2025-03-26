@@ -2,6 +2,8 @@ import { Injectable, inject } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { LocalStorageService } from './local-storage.service';
 import { CartItem } from '../../shared/models/cart-item.model';
+import { MatSnackBar, MatSnackBarRef } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -11,6 +13,8 @@ export class CartService {
   private cart: CartItem[] = this.localStorageService.getItem<CartItem[]>('cart') || [];
   private cartSubject = new BehaviorSubject<CartItem[]>(this.cart);
   private cartCountSubject = new BehaviorSubject<number>(this.getCartItemCount());
+  private _snackBar = inject(MatSnackBar);
+  private router = inject(Router);
 
   cart$ = this.cartSubject.asObservable();
   cartCount$ = this.cartCountSubject.asObservable();
@@ -24,6 +28,12 @@ export class CartService {
       this.cart.push(item);
     }
     this.updateCartState();
+
+    this.openSnackBar('Product added to your cart', 'Go to Cart')
+    .onAction()
+    .subscribe(() => {
+      this.router.navigate(['/cart']);
+    });
   }
 
   updateQuantity(id: string, quantity: number) : void {
@@ -61,5 +71,13 @@ export class CartService {
 
   getTotal(): number {
     return this.getSubtotal() + this.getTax();
+  }
+
+  openSnackBar(message: string, action: string) :  MatSnackBarRef<any> {
+    return this._snackBar.open(message, action, {
+      duration: 3000,
+      horizontalPosition: 'right',
+      verticalPosition: 'bottom',
+    });
   }
 }
