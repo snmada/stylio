@@ -14,6 +14,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { SortMenuComponent } from '../../shared/components/sort-menu/sort-menu.component';
 import { MatSidenavModule, MatDrawer } from '@angular/material/sidenav';
 import { FilterComponent } from '../../shared/components/filter/filter.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-subcategory-products',
@@ -27,7 +28,8 @@ import { FilterComponent } from '../../shared/components/filter/filter.component
     MatPaginatorModule,
     SortMenuComponent,
     MatSidenavModule,
-    FilterComponent
+    FilterComponent,
+    MatProgressSpinnerModule
   ],
   templateUrl: './subcategory-products.component.html',
   styleUrl: './subcategory-products.component.scss'
@@ -62,6 +64,7 @@ export class SubcategoryProductsComponent {
     minPrice: 0,
     maxPrice: 0,
   };
+  isLoading: boolean = true;
 
   ngOnInit() : void {
     this.categoryService.getCategories().subscribe({
@@ -102,6 +105,8 @@ export class SubcategoryProductsComponent {
   }
   
   loadProducts() : void {
+    this.isLoading = true;
+
     const sortParam = this.selectedSort;
     const colorFilter = this.selectedFilters.color;
     const priceRangeFilter = { 
@@ -120,6 +125,7 @@ export class SubcategoryProductsComponent {
       next: (response) => {
         this.products = response.products;
         this.totalProducts = response.totalCount;
+        this.isLoading = false;
 
         if (!this.filtersExtracted) {
           this.initialProducts = response.products;
@@ -138,6 +144,7 @@ export class SubcategoryProductsComponent {
       },
       error: (error) => {
         console.error('An error occured while fetching products:', error);
+        this.isLoading = false;
       }
     });
   }

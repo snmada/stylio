@@ -36,4 +36,16 @@ body {
         background-color: #191919,
         text-color: #FFFFFF
     ));
+
+    @include mat.snack-bar-overrides((
+        container-color: #191919,
+        supporting-text-color: #FFFFFF,
+        supporting-text-font: "'Outfit', sans-serif",
+        supporting-text-size: 16px,
+        button-color: #FFFFFF
+    ));
+
+    @include mat.progress-spinner-overrides((
+        active-indicator-color: #ddd
+    ));
 }

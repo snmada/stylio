@@ -6,6 +6,7 @@ import { ButtonComponent } from '../../shared/components/button/button.component
 import { CartItemComponent } from '../../shared/components/cart-item/cart-item.component';
 import { CartItem } from '../../shared/models/cart-item.model';
 import { CartService } from '../../core/services/cart.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-cart',
@@ -23,6 +24,7 @@ export class CartComponent {
   private cartService: CartService = inject(CartService);
 
   cartItems: CartItem[] = [];
+  cartCount$: Observable<number> = this.cartService.cartCount$;
   subtotalPrice = 0;
   tax = 0;
   totalPrice = 0;
