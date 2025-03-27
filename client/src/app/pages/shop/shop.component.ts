@@ -1,18 +1,18 @@
 import { Component, inject } from '@angular/core';
-import { NavbarComponent } from '../../shared/components/navbar/navbar.component';
 import { CommonModule } from '@angular/common';
 import { Category } from '../../shared/models/category.model';
 import { CategoryService } from '../../core/services/category.service';
 import { RouterModule } from '@angular/router';
 import { SubcategoryPreviewComponent } from '../../shared/components/subcategory-preview/subcategory-preview.component';
+import { LayoutComponent } from '../../shared/components/layout/layout.component';
 
 @Component({
   selector: 'app-shop',
   imports: [
     CommonModule,
     RouterModule,
-    NavbarComponent,
-    SubcategoryPreviewComponent
+    SubcategoryPreviewComponent,
+    LayoutComponent
   ],
   templateUrl: './shop.component.html',
   styleUrl: './shop.component.scss'

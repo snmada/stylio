@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
-import { NavbarComponent } from '../../shared/components/navbar/navbar.component';
 import { RouterModule } from '@angular/router';
 import { ButtonComponent } from '../../shared/components/button/button.component';
+import { LayoutComponent } from '../../shared/components/layout/layout.component';
 
 @Component({
   selector: 'app-page-not-found',
   imports: [
-    NavbarComponent,
     RouterModule,
-    ButtonComponent
+    ButtonComponent,
+    LayoutComponent
   ],
   templateUrl: './page-not-found.component.html',
   styleUrl: './page-not-found.component.scss'
