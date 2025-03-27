@@ -1,21 +1,21 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { NavbarComponent } from '../../shared/components/navbar/navbar.component';
 import { ButtonComponent } from '../../shared/components/button/button.component';
 import { CartItemComponent } from '../../shared/components/cart-item/cart-item.component';
 import { CartItem } from '../../shared/models/cart-item.model';
 import { CartService } from '../../core/services/cart.service';
 import { Observable } from 'rxjs';
+import { LayoutComponent } from '../../shared/components/layout/layout.component';
 
 @Component({
   selector: 'app-cart',
   imports: [
     CommonModule,
     RouterModule,
-    NavbarComponent,
     ButtonComponent,
-    CartItemComponent
+    CartItemComponent,
+    LayoutComponent
   ],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss'

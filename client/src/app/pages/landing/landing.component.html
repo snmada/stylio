@@ -1,38 +1,39 @@
-<app-navbar></app-navbar>
-<div class="flex flex-col justify-center items-center gap-7 mx-6 my-15 px-4 md:px-8 lg:px-12">
-    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-8xl font-bold text-center">Unlock Your Stylish Side.</h1>
-    <p class="text-base sm:text-lg md:text-xl text-center">
-        From classic to contemporary, 
-        our premium collection turns the ordinary into the extraordinary.
-    </p>
-    <button class="start-button" routerLink="/shop">
-        Start Shopping
-        <span class="arrow"></span>
-    </button>
-</div>
-<div class="grid grid-cols-1 lg:grid-cols-2 items-center mx-6"> 
-    <div class="left-side">
-        <div class="ml-20 mt-10 pt-3 relative">
-            <mat-icon class="icon-left-side">attach_file</mat-icon>
-            <p class="mb-10 text-base sm:text-lg md:text-xl w-[250px] md:w-[300px]">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vitae finibus lectus.
-            </p>
-        </div>
-        <img 
-            src="spacejoy-cA8GDGBs8g8-unsplash.jpg"
-            alt="Elegant living room with chic decor"
-        >
+<app-layout>
+    <div class="flex flex-col justify-center items-center gap-7 mx-6 my-15 px-4 md:px-8 lg:px-12">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-8xl font-bold text-center">Unlock Your Stylish Side.</h1>
+        <p class="text-base sm:text-lg md:text-xl text-center">
+            From classic to contemporary, 
+            our premium collection turns the ordinary into the extraordinary.
+        </p>
+        <button class="start-button" routerLink="/shop">
+            Start Shopping
+            <span class="arrow"></span>
+        </button>
     </div>
-    <div class="right-side">
-        <img 
-            src="spacejoy-8Y8U9fduILs-unsplash.jpg"
-            alt="Cozy, modern room with stylish decor"
-        >
-        <div class="ml-20 mt-5 pt-3 relative">
-            <mat-icon class="icon-right-side">attach_file</mat-icon>
-            <p class="mb-15 text-base sm:text-lg md:text-xl w-[250px] md:w-[300px]">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vitae finibus lectus.
-            </p>
+    <div class="grid grid-cols-1 lg:grid-cols-2 items-center mx-6"> 
+        <div class="left-side">
+            <div class="ml-20 mt-10 pt-3 relative">
+                <mat-icon class="icon-left-side">attach_file</mat-icon>
+                <p class="mb-10 text-base sm:text-lg md:text-xl w-[250px] md:w-[300px]">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vitae finibus lectus.
+                </p>
+            </div>
+            <img 
+                src="spacejoy-cA8GDGBs8g8-unsplash.jpg"
+                alt="Elegant living room with chic decor"
+            >
+        </div>
+        <div class="right-side">
+            <img 
+                src="spacejoy-8Y8U9fduILs-unsplash.jpg"
+                alt="Cozy, modern room with stylish decor"
+            >
+            <div class="ml-20 mt-5 pt-3 relative">
+                <mat-icon class="icon-right-side">attach_file</mat-icon>
+                <p class="mb-15 text-base sm:text-lg md:text-xl w-[250px] md:w-[300px]">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vitae finibus lectus.
+                </p>
+            </div>
         </div>
     </div>
-</div>
+</app-layout>

@@ -1,24 +1,25 @@
-<app-navbar></app-navbar>
-<div class="container mx-auto px-5 py-5">
-    <p class="text-2xl md:text-4xl text-center p-10 mb-5 font-semibold">What are you looking for?</p>
-    <div *ngFor="let category of categories" class="category-wrapper">
-        <div class="start-div">
-            <p class="category-name">{{ category.name }}.</p>
-            <div class="parallel-lines"></div>
+<app-layout>
+    <div class="container mx-auto p-5">
+        <p class="text-2xl md:text-4xl text-center p-10 mb-5 font-semibold">What are you looking for?</p>
+        <div *ngFor="let category of categories" class="category-wrapper">
+            <div class="start-div">
+                <p class="category-name">{{ category.name }}.</p>
+                <div class="parallel-lines"></div>
+            </div>
+            <div class="subcategory-div">
+                <ng-container *ngFor="let subcategory of category.subcategories">
+                    <app-subcategory-preview
+                        [imageSrc]="subcategory.image"
+                        [name]="subcategory.name"
+                        [imageSize]="130"
+                        [textSize]="18"
+                        [cursorPointer]="true"
+                        [showBorderOnHover]="true"
+                        [routerLink]="['/shop', category.name.toLowerCase(), subcategory.name.toLowerCase()]"
+                    ></app-subcategory-preview>
+                </ng-container>
+            </div>
+            <div class="end-div"></div>
         </div>
-        <div class="subcategory-div">
-            <ng-container *ngFor="let subcategory of category.subcategories">
-                <app-subcategory-preview
-                    [imageSrc]="subcategory.image"
-                    [name]="subcategory.name"
-                    [imageSize]="130"
-                    [textSize]="18"
-                    [cursorPointer]="true"
-                    [showBorderOnHover]="true"
-                    [routerLink]="['/shop', category.name.toLowerCase(), subcategory.name.toLowerCase()]"
-                ></app-subcategory-preview>
-            </ng-container>
-        </div>
-        <div class="end-div"></div>
     </div>
-</div>
+</app-layout>

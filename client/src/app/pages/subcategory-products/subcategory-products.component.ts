@@ -1,5 +1,4 @@
 import { Component, inject, ViewChild } from '@angular/core';
-import { NavbarComponent } from '../../shared/components/navbar/navbar.component';
 import { Category } from '../../shared/models/category.model';
 import { CategoryService } from '../../core/services/category.service';
 import { RouterModule, Router, ActivatedRoute } from '@angular/router';
@@ -15,6 +14,7 @@ import { SortMenuComponent } from '../../shared/components/sort-menu/sort-menu.c
 import { MatSidenavModule, MatDrawer } from '@angular/material/sidenav';
 import { FilterComponent } from '../../shared/components/filter/filter.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { LayoutComponent } from '../../shared/components/layout/layout.component';
 
 @Component({
   selector: 'app-subcategory-products',
@@ -22,14 +22,14 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     CommonModule,
     RouterModule,
     ButtonComponent,
-    NavbarComponent,
     SubcategoryPreviewComponent,
     ProductCardComponent,
     MatPaginatorModule,
     SortMenuComponent,
     MatSidenavModule,
     FilterComponent,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    LayoutComponent
   ],
   templateUrl: './subcategory-products.component.html',
   styleUrl: './subcategory-products.component.scss'
