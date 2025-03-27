@@ -16,6 +16,7 @@ export class ButtonComponent {
   @Input() disabled: boolean = false;
   @Input() icon: string = '';
   @Input() iconPosition: 'left' | 'right' = 'left';
+  @Input() fullWidth: boolean = false;
   @Output() clicked: EventEmitter<void> = new EventEmitter<void>();
 
   get buttonClasses() {
@@ -23,6 +24,10 @@ export class ButtonComponent {
       [`btn-${this.color}`]: true,
       'icon-right': this.iconPosition === 'right'
     };
+  }
+
+  get customStyles() {
+    return this.fullWidth ? { width: '100%' } : {};
   }
 
   onClick(): void {

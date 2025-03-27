@@ -7,17 +7,16 @@
 	color: #191919;
 	font-size: 16px;
 	border: 1px solid #191919;
-	border-radius: 50px;
 	cursor: pointer;
 	position: relative;
   	box-shadow: 5px 5px;
 	
 	.arrow {
-		width: 75px;
+		width: 90px;
 		height: 2px;
 		background-color: #191919;
 		position: absolute;
-		right: -30px;
+		right: -45px;
 		top: 50%;
 		transform: translateY(-50%);
 		transition: right 0.3s ease;
@@ -35,7 +34,7 @@
   	}
 
 	&:hover .arrow {
-		right: -40px;
+		right: -65px;
 	}
 }
 
@@ -55,7 +54,7 @@
 		left: 0;
 		width: 50%;
 		height: 35px;
-		background-color: #A59D84;
+		border: 1px solid #191919;
 	}
 
 	&::after {
@@ -65,7 +64,17 @@
 		left: 0;
 		width: 35px;
 		height: 50%;
-		background-color: #A59D84;
+		border: 1px solid #191919;
+	}
+
+	.icon-left-side {
+		position: absolute;
+		top: -90px;
+		left: -55px;
+		color: #191919;
+		font-size: 3rem;
+		width: fit-content;
+		height: fit-content;
 	}
 
 	@media (min-width: 1024px) {
@@ -75,6 +84,12 @@
 
 		&::after{
 			width: 50px;
+		}
+
+		.icon-left-side {
+			top: -105px;
+			left: -40px;
+			font-size: 5rem;
 		}
 	}
 }
@@ -96,7 +111,7 @@
 		right: 0;
 		width: 50%;
 		height: 35px;
-		background-color: #37B7C3;
+		border: 1px solid #191919;
 	}
 
 	&::after {
@@ -106,7 +121,18 @@
 		right: 0;
 		width: 35px;
 		height: 50%;
-		background-color: #37B7C3;
+		border: 1px solid #191919;
+	}
+
+	.icon-right-side {
+		position: absolute;
+		bottom: -50px;
+		right: 50px;
+		color: #191919;
+		font-size: 3rem;
+		width: fit-content;
+		height: fit-content;
+		transform: rotate(45deg);
 	}
 
 	@media (min-width: 1024px) {
@@ -119,6 +145,12 @@
 
 		&::after{
 			width: 50px;
+		}
+
+		.icon-right-side {
+			bottom: -70px;
+			right: 110px;
+			font-size: 5rem;
 		}
 	}
 }

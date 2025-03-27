@@ -72,13 +72,11 @@
     </mat-accordion>
 </div>
 <div class="mat-drawer-footer">
-    <app-button (click)="resetFilters()">Reset</app-button>
+    <app-button (click)="resetFilters()" [fullWidth]="true">Reset</app-button>
     <app-button 
         color="secondary"
-        (click)="
-            applyFilters(); 
-            closeDrawer()"
-    >
+        [fullWidth]="true"
+        (click)="applyFilters(); closeDrawer()">
         {{ totalProducts === 0 ? 'No results' : (totalProducts === 1 ? 'Show 1 result' : 'Show ' + totalProducts + ' results') }}
     </app-button>
 </div> 

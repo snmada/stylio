@@ -34,19 +34,19 @@
             </button> 
         </nav>
     
-        <div class="flex justify-end items-center gap-5">
-            <button class="icon-button">
+        <div class="flex justify-end items-center gap-2">
+            <button class="icon-button flex">
                 <mat-icon fontIcon="favorite_border"></mat-icon>
             </button>
             <button 
-                class="icon-button" 
+                class="icon-button flex" 
                 matBadge="{{ cartCount$ | async }}" 
                 [matBadgeHidden]="(cartCount$ | async) === 0"
                 routerLink="/cart"
             >
                 <mat-icon fontIcon="shopping_cart"></mat-icon>
             </button>
-            <button class="icon-button">
+            <button class="icon-button hidden md:flex">
                 <mat-icon fontIcon="account_circle"></mat-icon>
             </button>
         </div>
@@ -66,6 +66,11 @@
             class="menu-button"
         >
             Shop
+        </button>
+        <button  
+            class="menu-button"
+        >
+            Sign In
         </button>
     </nav>
 </header>
