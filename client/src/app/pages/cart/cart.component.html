@@ -20,7 +20,7 @@
             </app-cart-item>
         </div>
         <div *ngIf="(cartCount$ | async) !== 0" class="flex-[1]">
-            <div class="p-5 sticky top-25 border">
+            <div class="summary">
                 <div class="checkout-item">
                     <p class="name">Subtotal:</p>
                     <p class="value">{{ subtotalPrice | currency: 'USD' : 'symbol' : '1.2-2' }}</p>
@@ -33,7 +33,7 @@
                     <p>Total:</p>
                     <p>{{ totalPrice | currency: 'USD' : 'symbol' : '1.2-2' }}</p>
                 </div>
-                <app-button>Checkout</app-button>
+                <app-button [fullWidth]="true" color="secondary">Checkout</app-button>
             </div>
         </div>
     </div>

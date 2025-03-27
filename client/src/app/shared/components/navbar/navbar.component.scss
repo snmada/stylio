@@ -18,7 +18,7 @@
     }
   
     &:hover {
-      color: #2e93ff;
+      color: #191919;
     }
 }
   
@@ -34,15 +34,15 @@
     }
   
     &:hover {
-      color: #2e93ff;
+      color: #191919;
     }
 }
 
 .icon-button{
-    display: flex;
     cursor: pointer;
+    padding: 5px;
 
     &:hover {
-        color: #2e93ff;
+        color: #191919;
     }
 }

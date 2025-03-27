@@ -70,9 +70,14 @@
 .mat-drawer-footer {
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
     height: 120px;
     border-top: 1px solid #ddd;
+    gap: 10px;
+    padding: 0 10px;
+
+    app-button {
+        flex: 1;
+    }
 }
 
 mat-slider {
