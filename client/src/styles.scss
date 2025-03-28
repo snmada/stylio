@@ -48,4 +48,25 @@ body {
     @include mat.progress-spinner-overrides((
         active-indicator-color: #ddd
     ));
+
+    @include mat.form-field-overrides((
+        filled-focus-active-indicator-color: #191919,
+        filled-focus-label-text-color: #191919,
+        filled-label-text-color: #191919,
+        filled-input-text-placeholder-color: #A5A5A5,
+        filled-label-text-font: "'Outfit', sans-serif",
+        outlined-label-text-font: "'Outfit', sans-serif",
+        container-text-font: "'Outfit', sans-serif",
+        subscript-text-font: "'Outfit', sans-serif",
+        error-text-color: red,
+        filled-error-label-text-color: red,
+        filled-error-hover-label-text-color: red,
+        filled-error-focus-label-text-color: red,
+        filled-container-color: #F5F5F5
+    ));
+}
+
+input[type=password]::-ms-reveal,
+input[type=password]::-ms-clear {
+    display: none;
 }

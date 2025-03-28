@@ -1,0 +1,81 @@
+<div class="flex h-screen">
+	<div class="hidden lg:w-1/2 lg:block">
+		<img class="w-full h-full" src="kam-idris-_HqHX3LBN18-unsplash.jpg">
+	</div>
+	<div class="w-full lg:w-1/2 flex items-center justify-center">
+		<div class="register-container">
+			<span 
+				routerLink="/" 
+				class="logo"
+			>
+				Stylio.
+			</span>
+			<div class="text-[18px]">Create Your Account & Style Your Home</div>
+			<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+				<mat-form-field>
+					<mat-label>First Name</mat-label>
+					<input 
+						matInput 
+						formControlName="firstName" 
+						placeholder="Ex. John" 
+						required
+					>
+					<mat-error *ngIf="form['firstName'].touched">
+						{{ getErrorMessage('firstName') }}
+					</mat-error>
+				</mat-form-field>
+
+				<mat-form-field>
+					<mat-label>Last Name</mat-label>
+					<input 
+						matInput 
+						formControlName="lastName" 
+						placeholder="Ex. Doe" 
+						required
+					>
+					<mat-error *ngIf="form['lastName'].touched">
+						{{ getErrorMessage('lastName') }}
+					</mat-error>
+				</mat-form-field>
+
+				<mat-form-field>
+					<mat-label>Email</mat-label>
+					<input 
+						matInput 
+						formControlName="email" 
+						placeholder="Ex. john.doe@example.com" 
+						required
+					>
+					<mat-error *ngIf="form['email'].touched">
+						{{ getErrorMessage('email') }}
+					</mat-error>
+				</mat-form-field>
+
+				<mat-form-field>
+					<mat-label>Password</mat-label>
+					<input 
+						matInput 
+						formControlName="password"
+						[type]="hidePassword ? 'password' : 'text'" 
+						required
+					>
+					<button mat-icon-button matSuffix (click)="togglePasswordVisibility()">
+						<mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+					</button>
+					<mat-error *ngIf="form['password'].touched">
+						{{ getErrorMessage('password') }}
+					</mat-error>
+				</mat-form-field>
+
+				<div class="login-prompt">
+					<span>You already have an account? </span>
+					<a routerLink="/login" class="login-link">Log In</a>
+				</div>
+				
+				<app-button [fullWidth]="true" [disabled]="registerForm.invalid">
+					Register
+				</app-button>
+			</form>
+		</div>
+  	</div>
+</div>
