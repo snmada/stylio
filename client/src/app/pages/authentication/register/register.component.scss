@@ -1,0 +1,37 @@
+.register-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    width: 400px;
+    margin: 30px;
+
+    .logo{
+        font-family: "Gruppo", sans-serif;
+        font-weight: 600;
+        font-style: normal;
+        font-size: 34px;
+        cursor: pointer;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .login-prompt {
+        text-align: center;
+        margin: 5px 0;
+
+        .login-link {
+            font-weight: bold;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}
