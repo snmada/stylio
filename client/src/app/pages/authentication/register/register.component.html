@@ -67,6 +67,11 @@
 					</mat-error>
 				</mat-form-field>
 
+				<div *ngIf="errorMessage" class="error-message">
+					<mat-icon>error_outline</mat-icon>
+                    {{ errorMessage }}
+				</div>
+
 				<div class="login-prompt">
 					<span>You already have an account? </span>
 					<a routerLink="/login" class="login-link">Log In</a>
