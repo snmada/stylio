@@ -1,4 +1,4 @@
-.register-container {
+.login-container {
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -22,11 +22,11 @@
         margin-top: 10px;
     }
 
-    .login-prompt {
+    .register-prompt {
         text-align: center;
         margin: 5px 0;
 
-        .login-link {
+        .register-link {
             font-weight: bold;
 
             &:hover {

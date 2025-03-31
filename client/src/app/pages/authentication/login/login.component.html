@@ -1,0 +1,55 @@
+<div class="flex h-screen">
+    <div class="hidden lg:w-1/2 lg:block">
+        <img class="w-full h-full" src="kam-idris-_HqHX3LBN18-unsplash.jpg">
+    </div>
+    <div class="w-full lg:w-1/2 flex items-center justify-center">
+        <div class="login-container">
+            <span 
+                routerLink="/" 
+                class="logo"
+            >
+                Stylio.
+            </span>
+            <div class="text-[18px]">Welcome Back! Log In & Style Your Home</div>
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <mat-form-field>
+                    <mat-label>Email</mat-label>
+                    <input 
+                        matInput 
+                        formControlName="email" 
+                        placeholder="Ex. john.doe@example.com" 
+                        required
+                    >
+                    <mat-error *ngIf="form['email'].touched">
+						{{ getErrorMessage('email') }}
+					</mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Password</mat-label>
+                    <input 
+                        matInput 
+                        formControlName="password" 
+                        [type]="hidePassword ? 'password' : 'text'" 
+                        required
+                    >
+                    <button mat-icon-button matSuffix (click)="togglePasswordVisibility()">
+                        <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+                    </button>
+                    <mat-error *ngIf="form['password'].touched">
+						{{ getErrorMessage('password') }}
+					</mat-error>
+                </mat-form-field>
+
+                <div class="register-prompt">
+                    <span>Don't have an account? </span>
+                    <a routerLink="/register" class="register-link">Register Now</a>
+                </div>
+                
+                <app-button [fullWidth]="true" [disabled]="loginForm.invalid">
+                    Log In
+                </app-button>
+            </form>
+        </div>
+    </div>
+</div>
