@@ -9,6 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { ButtonComponent } from '../../../shared/components/button/button.component';
 import { AuthService } from '../../../core/services/auth.service';
 import { LoginRequest, AuthResponse } from '../../../shared/models/auth.model';
+import { Router } from '@angular/router';
 
 type FormField = 'email' | 'password';
 
@@ -29,6 +30,7 @@ type FormField = 'email' | 'password';
 })
 export class LoginComponent {
   private authService: AuthService = inject(AuthService);
+  private router: Router = inject(Router);
 
   loginForm: FormGroup;
   hidePassword = true;
@@ -85,8 +87,8 @@ export class LoginComponent {
       const loginData: LoginRequest = { email, password };
 
       this.authService.login(loginData).subscribe({
-        next: (response: AuthResponse) => {
-          localStorage.setItem('token', response.token);
+        next: () => {
+          this.router.navigate(['/orders']);
         },
         error: (error) => {
           this.errorMessage = error.message;
