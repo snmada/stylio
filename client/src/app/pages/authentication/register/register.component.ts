@@ -9,6 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { ButtonComponent } from '../../../shared/components/button/button.component';
 import { AuthService } from '../../../core/services/auth.service';
 import { RegisterRequest, AuthResponse } from '../../../shared/models/auth.model';
+import { Router } from '@angular/router';
 
 type FormField = 'firstName' | 'lastName' | 'email' | 'password';
 
@@ -29,6 +30,7 @@ type FormField = 'firstName' | 'lastName' | 'email' | 'password';
 })
 export class RegisterComponent {
   private authService: AuthService = inject(AuthService);
+  private router: Router = inject(Router);
 
   registerForm: FormGroup;
   hidePassword = true;
@@ -113,8 +115,8 @@ export class RegisterComponent {
       const registerData: RegisterRequest = { firstName, lastName, email, password };
 
       this.authService.register(registerData).subscribe({
-        next: (response: AuthResponse) => {
-          localStorage.setItem('token', response.token);
+        next: () => {
+          this.router.navigate(['/orders']);
         },
         error: (error) => {
           this.errorMessage = error.message;
