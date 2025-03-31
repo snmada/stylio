@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
@@ -7,6 +7,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { ButtonComponent } from '../../../shared/components/button/button.component';
+import { AuthService } from '../../../core/services/auth.service';
+import { LoginRequest, AuthResponse } from '../../../shared/models/auth.model';
 
 type FormField = 'email' | 'password';
 
@@ -26,8 +28,11 @@ type FormField = 'email' | 'password';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
+  private authService: AuthService = inject(AuthService);
+
   loginForm: FormGroup;
   hidePassword = true;
+  errorMessage = '';
 
   errorMessages: { [key in FormField]: { [key: string]: string } } = {
     email: {
@@ -48,6 +53,10 @@ export class LoginComponent {
       password: ['', [
         Validators.required,
       ]]
+    });
+
+    this.loginForm.valueChanges.subscribe(() => {
+      this.errorMessage = '';
     });
   }
 
@@ -71,6 +80,18 @@ export class LoginComponent {
   }
 
   onSubmit() : void {
-    console.log(this.loginForm.value);
+    if (this.loginForm.valid) {
+      const { email, password } = this.loginForm.value;
+      const loginData: LoginRequest = { email, password };
+
+      this.authService.login(loginData).subscribe({
+        next: (response: AuthResponse) => {
+          localStorage.setItem('token', response.token);
+        },
+        error: (error) => {
+          this.errorMessage = error.message;
+        }
+      });
+    }
   }
 }

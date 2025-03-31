@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
@@ -7,6 +7,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { ButtonComponent } from '../../../shared/components/button/button.component';
+import { AuthService } from '../../../core/services/auth.service';
+import { RegisterRequest, AuthResponse } from '../../../shared/models/auth.model';
 
 type FormField = 'firstName' | 'lastName' | 'email' | 'password';
 
@@ -26,8 +28,11 @@ type FormField = 'firstName' | 'lastName' | 'email' | 'password';
   styleUrl: './register.component.scss'
 })
 export class RegisterComponent {
+  private authService: AuthService = inject(AuthService);
+
   registerForm: FormGroup;
   hidePassword = true;
+  errorMessage = '';
 
   errorMessages: { [key in FormField]: { [key: string]: string } } = {
     firstName: {
@@ -70,8 +75,12 @@ export class RegisterComponent {
       password: ['', [
         Validators.required,
         Validators.minLength(8),
-        Validators.pattern(/^(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&]+$/)
+        Validators.pattern(/^(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&._-]+$/)
       ]]
+    });
+
+    this.registerForm.valueChanges.subscribe(() => {
+      this.errorMessage = '';
     });
   }
 
@@ -99,6 +108,18 @@ export class RegisterComponent {
   }
 
   onSubmit() : void {
-    console.log(this.registerForm.value);
+    if (this.registerForm.valid) {
+      const { firstName, lastName, email, password } = this.registerForm.value;
+      const registerData: RegisterRequest = { firstName, lastName, email, password };
+
+      this.authService.register(registerData).subscribe({
+        next: (response: AuthResponse) => {
+          localStorage.setItem('token', response.token);
+        },
+        error: (error) => {
+          this.errorMessage = error.message;
+        }
+      });
+    }
   }
 }
