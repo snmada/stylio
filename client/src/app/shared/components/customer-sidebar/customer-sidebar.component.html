@@ -1,0 +1,13 @@
+<aside class="sidebar w-20 lg:w-60 p-1 lg:p-5">
+    <nav class="menu">
+        <app-button class="block lg:hidden" icon="shopping_cart" [fullWidth]="true" routerLink="/orders"></app-button>
+        <app-button class="hidden lg:block" icon="shopping_cart" [fullWidth]="true" routerLink="/orders">My Orders</app-button>
+  
+        <app-button class="block lg:hidden" icon="settings" [fullWidth]="true" routerLink="/profile"></app-button>
+        <app-button class="hidden lg:block" icon="settings" [fullWidth]="true" routerLink="/profile">My Profile</app-button>
+    </nav>
+    <div class="logout-container">
+        <app-button class="block lg:hidden" icon="logout" [fullWidth]="true" (click)="logout()"></app-button>
+        <app-button class="hidden lg:block" icon="logout" [fullWidth]="true" (click)="logout()">Log Out</app-button>
+    </div>
+</aside>
