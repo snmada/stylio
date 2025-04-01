@@ -1,5 +1,5 @@
 <header class="bg-white shadow-md sticky w-full top-0 left-0 z-10">
-    <div class="grid grid-cols-3 items-center container mx-auto px-5 py-4">
+    <div class="grid grid-cols-3 items-center container mx-auto px-5 h-[10vh]">
         <button 
             class="md:hidden text-gray-700 justify-self-start cursor-pointer" 
             (click)="toggleMenu()"
@@ -46,7 +46,10 @@
             >
                 <mat-icon fontIcon="shopping_cart"></mat-icon>
             </button>
-            <button class="icon-button hidden md:flex" routerLink="/login">
+            <button 
+                class="icon-button hidden md:flex" 
+                [routerLink]="(isAuthenticated$ | async) ? '/orders' : '/login'"
+            >
                 <mat-icon fontIcon="account_circle"></mat-icon>
             </button>
         </div>
@@ -69,9 +72,9 @@
         </button>
         <button  
             class="menu-button"
-            routerLink="/login"
+            [routerLink]="(isAuthenticated$ | async) ? '/orders' : '/login'"
         >
-            Log In
+            {{ (isAuthenticated$ | async) ? "My Account" : "Log In" }}
         </button>
     </nav>
 </header>

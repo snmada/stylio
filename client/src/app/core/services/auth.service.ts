@@ -4,6 +4,7 @@ import { Observable, throwError, of } from 'rxjs';
 import { catchError, map } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { RegisterRequest, LoginRequest, AuthResponse } from '../../shared/models/auth.model';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -11,6 +12,7 @@ import { RegisterRequest, LoginRequest, AuthResponse } from '../../shared/models
 export class AuthService {
   private http = inject(HttpClient);
   private apiUrl = environment.apiUrl;
+  private router = inject(Router);
 
   register(data: RegisterRequest): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(`${this.apiUrl}/auth/register`, data, { withCredentials: true })
@@ -42,5 +44,16 @@ export class AuthService {
         map(() => true),
         catchError(() => of(false))
       );
+  }
+
+  logout(): void {
+    this.http.post(`${this.apiUrl}/auth/logout`, {}, { withCredentials: true }).subscribe({
+      next: () => {
+        this.router.navigate(['/login']);
+      },
+      error: (error) => {
+        console.error('Logout failed', error);
+      }
+    });
   }
 }
