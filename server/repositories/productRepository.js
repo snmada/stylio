@@ -24,7 +24,7 @@ export const findAllProductsBySubcategoryId = async (subcategoryId, pageIndex, p
     }
 
     const where = {
-        subcategory_id: subcategoryId,
+        subcategoryId: subcategoryId,
         stock: {
             gt: 0
         },
@@ -58,7 +58,7 @@ export const findAllProductsBySubcategoryId = async (subcategoryId, pageIndex, p
                 select: {
                     id: true,
                     name: true,
-                    hex_code: true
+                    hexCode: true
                 }
             }
         }

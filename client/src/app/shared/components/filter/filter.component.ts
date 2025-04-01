@@ -26,7 +26,7 @@ import { MatSliderModule } from '@angular/material/slider';
 export class FilterComponent {
   @Input() drawer: MatDrawer | undefined;
   @Input() filterOptions!: { 
-    colors: { id: string, name: string, hex_code: string}[], 
+    colors: { id: string, name: string, hexCode: string}[], 
     minPrice: number, 
     maxPrice: number 
   };

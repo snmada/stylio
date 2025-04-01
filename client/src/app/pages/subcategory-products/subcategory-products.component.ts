@@ -60,7 +60,7 @@ export class SubcategoryProductsComponent {
     maxPrice: 0,
   };
   filterOptions = {
-    colors: [] as { id: string, name: string, hex_code: string }[], 
+    colors: [] as { id: string, name: string, hexCode: string }[], 
     minPrice: 0,
     maxPrice: 0,
   };

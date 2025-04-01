@@ -103,7 +103,7 @@ async function main() {
     update: {},
     create: {
       name: "Blue",
-      hex_code: "#0A5EB0"
+      hexCode: "#0A5EB0"
     }
   });
 
@@ -112,7 +112,7 @@ async function main() {
     update: {},
     create: {
       name: "Red",
-      hex_code: "#D84040"
+      hexCode: "#D84040"
     }
   });
   
@@ -121,7 +121,7 @@ async function main() {
     update: {},
     create: {
       name: "Green",
-      hex_code: "#5CB338"
+      hexCode: "#5CB338"
     }
   });
 
@@ -130,7 +130,7 @@ async function main() {
     update: {},
     create: {
       name: "White",
-      hex_code: "#FFFFFF"
+      hexCode: "#FFFFFF"
     }
   });
 
@@ -139,7 +139,7 @@ async function main() {
     update: {},
     create: {
       name: "Black",
-      hex_code: "#191919"
+      hexCode: "#191919"
     }
   });
 
@@ -148,7 +148,7 @@ async function main() {
     update: {},
     create: {
       name: "Yellow",
-      hex_code: "#ECE852"
+      hexCode: "#ECE852"
     }
   });
 
@@ -161,8 +161,8 @@ async function main() {
       price: 50.99,
       image: defaultProductImage,
       stock: 150,
-      subcategory_id: curtains.id,
-      color_id: blue.id
+      subcategoryId: curtains.id,
+      colorId: blue.id
     },
     {
       name: "LOREM-B",
@@ -170,8 +170,8 @@ async function main() {
       price: 87.99,
       image: defaultProductImage,
       stock: 100,
-      subcategory_id: curtains.id,
-      color_id: yellow.id
+      subcategoryId: curtains.id,
+      colorId: yellow.id
     },
     {
       name: "LOREM-C",
@@ -179,8 +179,8 @@ async function main() {
       price: 30,
       image: defaultProductImage,
       stock: 290,
-      subcategory_id: cushions.id,
-      color_id: yellow.id
+      subcategoryId: cushions.id,
+      colorId: yellow.id
     },
     {
       name: "LOREM-D",
@@ -188,8 +188,8 @@ async function main() {
       price: 100.97,
       image: defaultProductImage,
       stock: 200,
-      subcategory_id: cushions.id,
-      color_id: black.id
+      subcategoryId: cushions.id,
+      colorId: black.id
     },
     {
       name: "LOREM-E",
@@ -197,8 +197,8 @@ async function main() {
       price: 150.99,
       image: defaultProductImage,
       stock: 30,
-      subcategory_id: rugs.id,
-      color_id: white.id
+      subcategoryId: rugs.id,
+      colorId: white.id
     },
     {
       name: "LOREM-F",
@@ -206,8 +206,8 @@ async function main() {
       price: 12.99,
       image: defaultProductImage,
       stock: 50,
-      subcategory_id: rugs.id,
-      color_id: blue.id
+      subcategoryId: rugs.id,
+      colorId: blue.id
     },
     {
       name: "LOREM-G",
@@ -215,8 +215,8 @@ async function main() {
       price: 40.99,
       image: defaultProductImage,
       stock: 150,
-      subcategory_id: artificialPlants.id,
-      color_id: green.id
+      subcategoryId: artificialPlants.id,
+      colorId: green.id
     },
     {
       name: "LOREM-H",
@@ -224,8 +224,8 @@ async function main() {
       price: 541.99,
       image: defaultProductImage,
       stock: 170,
-      subcategory_id: artificialPlants.id,
-      color_id: red.id
+      subcategoryId: artificialPlants.id,
+      colorId: red.id
     },
     {
       name: "LOREM-I",
@@ -233,8 +233,8 @@ async function main() {
       price: 89.99,
       image: defaultProductImage,
       stock: 75,
-      subcategory_id: vases.id,
-      color_id: red.id
+      subcategoryId: vases.id,
+      colorId: red.id
     },
     {
       name: "LOREM-J",
@@ -242,8 +242,8 @@ async function main() {
       price: 120.99,
       image: defaultProductImage,
       stock: 90,
-      subcategory_id: vases.id,
-      color_id: red.id
+      subcategoryId: vases.id,
+      colorId: red.id
     },
     {
       name: "LOREM-K",
@@ -251,8 +251,8 @@ async function main() {
       price: 100.99,
       image: defaultProductImage,
       stock: 20,
-      subcategory_id: wallArt.id,
-      color_id: yellow.id
+      subcategoryId: wallArt.id,
+      colorId: yellow.id
     },
     {
       name: "LOREM-L",
@@ -260,8 +260,8 @@ async function main() {
       price: 120,
       image: defaultProductImage,
       stock: 290,
-      subcategory_id: wallArt.id,
-      color_id: black.id
+      subcategoryId: wallArt.id,
+      colorId: black.id
     },
   ];
 
@@ -276,10 +276,10 @@ async function main() {
         image: product.image,
         stock: product.stock,
         subcategory: {
-          connect: { id: product.subcategory_id }
+          connect: { id: product.subcategoryId }
         },
         color: {
-          connect: { id: product.color_id }
+          connect: { id: product.colorId }
         },
       },
     });
