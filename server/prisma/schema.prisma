@@ -34,15 +34,15 @@ model Subcategory {
   name                          String                  @unique
   description                   String
   image                         String
-  category_id                   String
-  category                      Category                @relation(fields: [category_id], references: [id])
+  categoryId                    String
+  category                      Category                @relation(fields: [categoryId], references: [id])
   products                      Product[]
 }
 
 model Color {
   id                            String                  @id @default(uuid())
   name                          String                  @unique
-  hex_code                      String                  
+  hexCode                       String                  
   products                      Product[]
 }
 
@@ -53,8 +53,8 @@ model Product {
   price                         Float
   image                         String
   stock                         Int
-  subcategory_id                String
-  subcategory                   Subcategory             @relation(fields: [subcategory_id], references: [id])
-  color_id                      String
-  color                         Color                   @relation(fields: [color_id], references: [id])
+  subcategoryId                 String
+  subcategory                   Subcategory             @relation(fields: [subcategoryId], references: [id])
+  colorId                       String
+  color                         Color                   @relation(fields: [colorId], references: [id])
 }
