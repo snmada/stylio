@@ -7,6 +7,7 @@ import { CartComponent } from './pages/cart/cart.component';
 import { RegisterComponent } from './pages/authentication/register/register.component';
 import { LoginComponent } from './pages/authentication/login/login.component';
 import { OrdersComponent } from './pages/orders/orders.component';
+import { CustomerProfileComponent } from './pages/customer-profile/customer-profile.component';
 import { UnauthorizedComponent } from './pages/unauthorized/unauthorized.component';
 import { authGuard } from './core/guards/auth.guard';
 
@@ -18,6 +19,7 @@ export const routes: Routes = [
     { path: 'register', component: RegisterComponent },
     { path: 'login', component: LoginComponent },
     { path: 'orders', component: OrdersComponent, canActivate: [authGuard] },
+    { path: 'profile', component: CustomerProfileComponent, canActivate: [authGuard] },
     { path: 'unauthorized', component: UnauthorizedComponent },
     { path: '404', component: PageNotFoundComponent },
     { path: '**', redirectTo: '/404' },
