@@ -1,0 +1,129 @@
+<app-layout>
+    <div class="container mx-auto p-5 flex flex-row gap-3">
+        <app-customer-sidebar></app-customer-sidebar>
+        <div class="profile-container">
+            <div class="section">Personal Information</div>
+            <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+                    <mat-form-field class="w-full">
+                        <mat-label>First Name</mat-label>
+                        <input 
+                            matInput 
+                            formControlName="firstName" 
+                            placeholder="Ex. John" 
+                            required
+                        >
+                        <mat-error *ngIf="form['firstName'].touched">
+                            {{ getErrorMessage('firstName') }}
+                        </mat-error>
+                    </mat-form-field>
+                    
+                    <mat-form-field class="w-full">
+                        <mat-label>Last Name</mat-label>
+                        <input 
+                            matInput 
+                            formControlName="lastName" 
+                            placeholder="Ex. Doe" 
+                            required
+                        >
+                        <mat-error *ngIf="form['lastName'].touched">
+                            {{ getErrorMessage('lastName') }}
+                        </mat-error>
+                    </mat-form-field>
+                   
+                    <mat-form-field class="w-full">
+                        <mat-label>Phone Number</mat-label>
+                        <input 
+                            matInput 
+                            formControlName="phoneNumber" 
+                            placeholder="Ex. (1234) 567 890" 
+                            (input)="onPhoneInput($event)"
+                        >
+                        <mat-error *ngIf="form['phoneNumber'].touched">
+                            {{ getErrorMessage('phoneNumber') }}
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="w-full">
+                        <mat-label>Email</mat-label>
+                        <input 
+                            matInput 
+                            formControlName="email" 
+                            placeholder="Ex. john.doe@example.com"
+                            [disabled]="true"
+                        >
+                    </mat-form-field>
+                    <span class="flex items-center h-[75%]">
+                        <mat-icon matTooltip="Email change is currently unavailable">info_outline</mat-icon>
+                    </span>
+                </div>
+
+                <p class="section">Shipping Address</p>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                    <mat-form-field class="w-full">
+                        <mat-label>Address Line 1</mat-label>
+                        <input 
+                            matInput 
+                            formControlName="addressLine1" 
+                            placeholder="Ex. 123 Main St"
+                        >
+                    </mat-form-field>
+                    
+                    <mat-form-field class="w-full">
+                        <mat-label>Address Line 2</mat-label>
+                        <input 
+                            matInput 
+                            formControlName="addressLine2"
+                            placeholder="Ex. Apt 1, Builidng A2, etc. (Optional)"
+                        >
+                    </mat-form-field>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+                    <mat-form-field class="w-full">
+                        <mat-label>City</mat-label>
+                        <input 
+                            matInput 
+                            formControlName="city" 
+                            placeholder="Ex. Barcelona"
+                        >
+                    </mat-form-field>
+         
+                    <mat-form-field class="w-full">
+                        <mat-label>Country</mat-label>
+                        <input 
+                            #countryInput
+                            matInput 
+                            formControlName="country" 
+                            [formControl]="countryControl"
+                            [matAutocomplete]="autoCountry"
+                            (input)="filterCountries()"
+                            (focus)="filterCountries()"
+                            placeholder="Select your country"
+                  
+                        >
+                        <mat-autocomplete requireSelection #autoCountry="matAutocomplete">
+                            @for (country of filteredCountries; track country) {
+                                <mat-option [value]="country">{{ country }}</mat-option>
+                            }
+                        </mat-autocomplete>
+                    </mat-form-field>
+               
+                    <mat-form-field class="w-full">
+                        <mat-label>Postal Code</mat-label>
+                        <input 
+                            matInput
+                            formControlName="postalCode" 
+                            placeholder="Ex. 123456"
+               
+                        >
+                    </mat-form-field>
+                </div>
+				
+				<app-button [disabled]="profileForm.invalid" color="secondary" class="ml-auto">
+					Save Changes
+				</app-button>
+			</form>
+        </div>
+    </div>
+</app-layout>
